@@ -1,6 +1,6 @@
-# Model View Automaton
+# Automaton
 
-The Model View Automaton is a new architectural pattern, created for easy state management.
+The Automaton is a new framework, created for easy state management.
 
 # About 
 
