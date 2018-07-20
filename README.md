@@ -1,6 +1,6 @@
 # Automaton
 
-The Automaton is a framework for managing the state of application. It just defines an algorithm for possible mutations inside implementation.
+The Automaton is a framework for managing the state of the application. 
 
 # About 
 
@@ -35,8 +35,8 @@ For now there are two implementations: [Kotlin](Kotlin) and [Swift](Swift). Go t
 
 # Examples
 
-* [Lessons](https://github.com/Nominalista/Lessons) - very simple app for playing videos. Written in Swift.
-* [Expenses](https://github.com/Nominalista/Expenses) - more complex app for tracking budget. Written in Kotlin.
+* [Lessons](https://github.com/Nominalista/Lessons) - simple app for video playback. Written in Swift.
+* [Expenses](https://github.com/Nominalista/Expenses) - more complex app for budget tracking. Written in Kotlin.
 
 # Authors
 
