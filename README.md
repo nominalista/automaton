@@ -1,27 +1,33 @@
 # Automaton
 
-The Automaton is a new framework, created for easy state management.
+The Automaton is a framework for managing the state of application. It just defines an algorithm for possible mutations inside implementation.
 
 # About 
 
-Model View Automaton (MVA) is composed from three components as any other popular pattern (MVC, MVVM, MVP, etc.).
+The name comes from main object that will be used in code - `Automaton`. The algorithm of its operation is presented below.
 
-* **Model** - is a place where your data objects are located. This is also a group of objects that contains database interfaces, server communication code, parsers and many others.
+![Diagram](Diagram.png)
 
-* **View** - represents the current state of the app in a visual form. Unlike the traditional approach, it can contain controllers / presenters / view models for communication with other layers.
+As you can see, there are 4 important objects to remember:
+1. `Automaton` - represents the algorithm.
+2. `State` - represents the state of entire application, it may consists of sub-states.
+3. `Input` - represents the action that can be send, e.g. download data, save value, etc.
+4. `Mapper` - used by algorithm to transform (State, Input) into (State, Output).
 
-* **Automaton** - is the core of your app behavior. It contains reactive automaton, mappers, inputs and (as suggested) state objects.
+Let's explain communication between these objects. An object from view layer (it can be also an object from controller layer, view model layer, presenter layer, etc.) sends instance of `Input` to `Automaton`. Then `Mapper` uses current `State` and `Input` to return a new `State` with optional `Output` (which is just a postponed `Input`).
 
-## Reactive Automaton
+# Foundation
 
-It's a deterministic finite state automaton ([Mealy machine](https://en.wikipedia.org/wiki/Mealy_machine) specifically), which in human language means - based on current **state** and accepted **input**, it generates new **state** and the **output**.
+The algorithm is based on [Mealy machine](https://en.wikipedia.org/wiki/Mealy_machine), which is represented by six elements〈𝒬,𝑞,Σ,𝛿,Δ,𝜌〉, where:
 
-So there are 4 important objects to remember:
+* 𝒬 is set of states,
+* 𝑞 is initial state,
+* Σ is input set,
+* 𝛿 is transition function,
+* Δ is output set,
+* 𝜌 is output function.
 
-1. **Automaton** - represents the operation algorithm.
-2. **State** - state of our application.
-3. **Input** - an action that can be send.
-4. **Mapper** - used by algorithm to transform (State, Input) into (State, Output).
+It was noticed that transition function and output function can be merged into a function called map function (it is represented by `map` method inside `Mapper`). Furthermore, the traditional Mealy machine communicates with the environment by sending outputs. However in this framework `Automaton` treats output as a postponed input and communicates with the enviroment by giving access to its state.
 
 # Usage
 
